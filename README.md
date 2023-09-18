@@ -1,4 +1,4 @@
-# Activity 8 Backend
+# PomodoroTasker
 
 This repository contains source code for backend (as well as frontend) for activity 8 in the class "Intro to CEDT".
 As this acticity focuses on how to connect backend to database and manipulate the database(MongoDB) with Mongoose, an Object Data Modeling(ODM) library for MongoDB.
