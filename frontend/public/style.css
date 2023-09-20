@@ -55,32 +55,32 @@ h1 {
 .timer {
   background-color: #FFFFFF;
   box-shadow: 0px 5px;
-  width: 600px;
-  margin-top: 100px;
+  width: 500px;
+  margin-top: 50px;
   border-radius: 25px;
   text-align: center;
   vertical-align: middle;
-  font-size: 180px;
+  font-size: 150px;
 }
 
-.start-button {
+.big-button {
   position: relative;
   background-color: #FFFFFF;
   box-shadow: 0px 15px;
-  width: 600px;
+  width: 500px;
   margin-top: 25px;
   border-radius: 25px;
   text-align: center;
   vertical-align: middle;
-  font-size: 80px;
+  font-size: 64px;
   border-style: none;
 }
 
-.start-button:hover {
+.big-button:hover {
   background-color: #CCCCCC;
 }
 
-.start-button:active {
+.big-button:active {
   background-color: #CCCCCC;
   top: 15px;
   box-shadow: 0px 0px;
