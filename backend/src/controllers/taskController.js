@@ -21,7 +21,7 @@ export const createTask = async (req, res) => {
     const newTask = new Task(req.body);
     await newTask.save();
 
-    res.status(200).json({ message: "OK" });
+    res.status(200).json({ message: "OK", _id: newTask._id });
   } catch (err) {
     if (err.name === "ValidationError") {
       res.status(400).json({ error: "Bad Request" });
@@ -31,24 +31,24 @@ export const createTask = async (req, res) => {
   }
 };
 
-/** @type {import("express").RequestHandler} */
-export const editTask = async (req, res) => {
-  try {
-    const updated = await Task.findByIdAndUpdate(req.params.id, req.body);
+// /** @type {import("express").RequestHandler} */
+// export const editTask = async (req, res) => {
+//   try {
+//     const updated = await Task.findByIdAndUpdate(req.params.id, req.body);
 
-    if (updated) {
-      res.status(200).json({ message: "OK" });
-    } else {
-      res.status(404).json({ error: "Not Found" });
-    }
-  } catch (err) {
-    if (err.name === "CastError") {
-      res.status(400).json({ error: "Bad Request" });
-    } else {
-      res.status(500).json({ error: "Internal server error." });
-    }
-  }
-};
+//     if (updated) {
+//       res.status(200).json({ message: "OK" });
+//     } else {
+//       res.status(404).json({ error: "Not Found" });
+//     }
+//   } catch (err) {
+//     if (err.name === "CastError") {
+//       res.status(400).json({ error: "Bad Request" });
+//     } else {
+//       res.status(500).json({ error: "Internal server error." });
+//     }
+//   }
+// };
 
 /** @type {import("express").RequestHandler} */
 export const deleteTask = async (req, res) => {
