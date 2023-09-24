@@ -1,17 +1,9 @@
 /**
- * @typedef {Object} Item
+ * @typedef {Object} Task
  * @property {string} _id
- * @property {string} item
  * @property {string} name
- * @property {number} price
  */
 
-/** @typedef {Omit<Item, "_id">} ItemPayload */
+/** @typedef {Omit<Task, "_id">} TaskPayload */
 
 export const BACKEND_URL = "http://localhost:3222";
-
-export const MEMBERS = [
-  "อติวงศ์ สุชาโต",
-  "โปรดปราน บุณยพุกกณะ",
-  "ณัฐวุฒิ หนูไฟโรจน์",
-];

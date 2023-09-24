@@ -1,14 +1,11 @@
-import { populateMembers } from "./member.js";
-import { fetchAndDrawTable, handleCreateItem } from "./table.js";
+import { fetchAndDrawTaskList as fetchAndDrawTaskList, handleCreateTask } from "./tasklist.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-  fetchAndDrawTable();
-
-  populateMembers();
+  fetchAndDrawTaskList();
 
   /** @type {HTMLButtonElement} */
-  const addButton = document.getElementById("add-newrow");
+  const addButton = document.getElementById("add-button");
   addButton.addEventListener("click", () => {
-    handleCreateItem();
+    handleCreateTask();
   });
 });

@@ -1,44 +1,30 @@
 import { BACKEND_URL } from "./config.js";
 
-/** @typedef {import("./config.js").Item} Item */
-/** @typedef {import("./config.js").ItemPayload} ItemPayload */
+/** @typedef {import("./config.js").Task} Task */
+/** @typedef {import("./config.js").TaskPayload} TaskPayload */
 
-export async function getItems() {
-  /** @type {Item[]} */
-  const items = await fetch(`${BACKEND_URL}/items`).then((r) => r.json());
+export async function getTasks() {
+  /** @type {Task[]} */
+  const tasks = await fetch(`${BACKEND_URL}/tasks`).then((r) => r.json());
 
-  return items;
+  return tasks;
 }
 
 /**
- * @param {ItemPayload} item
+ * @param {TaskPayload} task
  */
-export async function createItem(item) {
-  await fetch(`${BACKEND_URL}/items`, {
+export async function createTask(task) {
+  await fetch(`${BACKEND_URL}/task`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(item),
+    body: JSON.stringify(task),
   });
 }
 
-/**
- * @param {string} id
- * @param {ItemPayload} item
- */
-export async function editItem(id, item) {
-  await fetch(`${BACKEND_URL}/items/${id}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(item),
-  });
-}
-
-export async function deleteItem(id, item) {
-  await fetch(`${BACKEND_URL}/items/${id}`, {
+export async function deleteTask(id, task) {
+  await fetch(`${BACKEND_URL}/task/${id}`, {
     method: "DELETE",
   });
 }

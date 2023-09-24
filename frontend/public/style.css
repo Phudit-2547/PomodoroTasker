@@ -150,7 +150,10 @@ button:active {
 
 .task-name {
   grid-area: task-name;
+  word-wrap: break-word;
+  width: 300px;
   margin-left: 25px;
+  margin-right: 25px;
   font-size: 40px;
 }
 
