@@ -7,6 +7,7 @@ const BREAK_DURATION = 300;
 /**
  * @typedef {Object} pomodoroTimer
  * @property {int} secondsLeft
+ * @property {Date} prevDate
  * @property {int} intervalID
  * @property {boolean} timerStarted
  * @property {boolean} isWorkingState
@@ -23,11 +24,12 @@ export const pomodoroTimer = {
     isWorkingState: true,
     isTimerRunning: false,
     startTimer: function () {
+        pomodoroTimer.prevDate = new Date();
         pomodoroTimer.isTimerRunning = true;
         document.getElementById("status").setAttribute("class", "active");
         document.getElementById("timer").setAttribute("class", "active");
         document.getElementById("timer-button").innerText = "Pause";
-        pomodoroTimer.intervalID = setInterval(pomodoroTimer.decrementTimer, 1000);
+        pomodoroTimer.intervalID = setInterval(pomodoroTimer.updateTimer, 100);
     },
     pauseTimer: function () {
         pomodoroTimer.isTimerRunning = false;
@@ -62,8 +64,11 @@ export const pomodoroTimer = {
         pomodoroTimer.isTimerRunning = false;
         document.getElementById("timer").innerText = pomodoroTimer.getTimeStr(pomodoroTimer.secondsLeft);
     },
-    decrementTimer: function () {
-        if (pomodoroTimer.secondsLeft == 0) {
+    updateTimer: function () {
+        let currDate = new Date();
+        pomodoroTimer.secondsLeft -= (currDate - pomodoroTimer.prevDate) / 1000;
+        pomodoroTimer.prevDate = currDate;
+        if (pomodoroTimer.secondsLeft <= 0) {
             if (pomodoroTimer.isWorkingState) {
                 pomodoroTimer.isWorkingState = false;
                 pomodoroTimer.secondsLeft = BREAK_DURATION;
@@ -73,14 +78,12 @@ export const pomodoroTimer = {
                 pomodoroTimer.secondsLeft = WORK_DURATION;
                 document.getElementById("status").innerText = "Work";
             }
-        } else {
-            pomodoroTimer.secondsLeft--;
         }
-        document.getElementById("timer").innerText = pomodoroTimer.getTimeStr(pomodoroTimer.secondsLeft);
+        document.getElementById("timer").innerText = pomodoroTimer.getTimeStr();
     },
     getTimeStr: function () {
         let minutes = Math.floor(pomodoroTimer.secondsLeft / 60);
-        let seconds = pomodoroTimer.secondsLeft % 60;
+        let seconds = Math.floor(pomodoroTimer.secondsLeft % 60);
         return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
     }
 };
