@@ -34,7 +34,8 @@ function drawTaskList(tasks) {
 }
 
 export async function fetchAndDrawTaskList() {
-  const tasks = await getTasks();
+  const tasks = await getTasks()
+    .catch(() => {alert("Failed to fetch task list.")});
 
   drawTaskList(tasks);
 }
@@ -43,7 +44,8 @@ export async function fetchAndDrawTaskList() {
  * @param {string} id
  */
 export async function handleDelete(id) {
-  await deleteTask(id);
+  await deleteTask(id)
+    .catch(() => {alert("Failed to delete task.")});
   await fetchAndDrawTaskList();
 }
 
@@ -53,12 +55,13 @@ export async function handleCreateTask() {
 
   if (!taskName) {
     return;
+  } else {
+    const payload = {
+      name: taskName,
+    };
+
+    await createTask(payload)
+      .catch(() => {alert("Failed to create task.")});
+    await fetchAndDrawTaskList();
   }
-
-  const payload = {
-    name: taskName,
-  };
-
-  await createTask(payload);
-  await fetchAndDrawTaskList();
 }
