@@ -138,7 +138,6 @@ button:active {
   width: 450px;
   background-color: #999999;
   border-radius: 25px;
-  box-shadow: 0px 5px;
 }
 
 .remove-button {
