@@ -73,11 +73,19 @@ export const pomodoroTimer = {
                 pomodoroTimer.isWorkingState = false;
                 pomodoroTimer.secondsLeft = BREAK_DURATION;
                 document.getElementById("status").innerText = "Break";
-            } else {
+                new Notification("Pomodoro Timer", {
+                body: "Time to take a break",
+            });
+            } 
+            else {
                 pomodoroTimer.isWorkingState = true;
                 pomodoroTimer.secondsLeft = WORK_DURATION;
                 document.getElementById("status").innerText = "Work";
+                new Notification("Pomodoro Timer", {
+                body: "Break's over!",
+            },);
             }
+            
         }
         document.getElementById("timer").innerText = pomodoroTimer.getTimeStr();
     },
